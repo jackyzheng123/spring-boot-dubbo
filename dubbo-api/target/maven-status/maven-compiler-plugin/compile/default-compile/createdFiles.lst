@@ -1,0 +1,4 @@
+com\xsjt\api\HelloWorldService.class
+com\xsjt\api\UserService.class
+com\xsjt\model\User.class
+com\xsjt\model\Role.class

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+        ">
+
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="${dubbo.application.name}"/>
+    
+    <!-- 使用zookeeper注册中心暴露服务地址 -->
+    <dubbo:registry address="${dubbo.registry.address}" check="false" />
+       
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}" dispatcher="all" threadpool="fixed" threads="100" accepts="100" />
+       
+    <!-- 具体的bean实现 -->
+    <bean id="helloWorldService" class="com.xsjt.service.impl.HelloSericeImpl" />
+    <bean id="userService" class = "com.xsjt.service.impl.UserServiceImpl"></bean>
+       
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service interface="com.xsjt.api.HelloWorldService" ref="helloWorldService" executes="100" actives="100" version="${dubbo.version}" />
+    <dubbo:service interface="com.xsjt.api.UserService" ref="userService" executes="100" actives="100" version="${dubbo.version}" />
+    
+</beans>

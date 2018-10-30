@@ -1,0 +1,12 @@
+
+ springboot 整合 dubbo、myBatis、druid，支持监控、分页、事务
+
+ 1.dubbo-api      暴露接口
+ 2.dubbo-service  实现接口，用于暴露dubbo服务。作为provider
+ 3.dubbo-web      控制层，调用dubbo服务，提供对外访问
+ 
+ 注：@Service 和   @Transactional 不可以同时使用，若同时使用，dubbo 服务不能发布。
+ 
+解决方法：
+       暴露dubbo服务 改为 xml配置方式，事务 还是使用 @Transactional 注解方式。  
+  
